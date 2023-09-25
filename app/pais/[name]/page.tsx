@@ -87,7 +87,7 @@ async function CountryPage({ params: { name } }: { params: { name: string } }) {
                 <h3 className="mt-12 text-2xl font-semibold text-gray-800">Paises que fazem fronteira</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 w-full my-3">
                     {borderCountries?.map((border) => (
-                        <CountryCard {...border} />
+                        <CountryCard key={border.name} {...border} />
                     ))}
                 </div>
             </section>
