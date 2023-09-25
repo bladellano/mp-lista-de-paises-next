@@ -1,8 +1,29 @@
+import CountryCard from "@/components/country-card"
 
-type Country = {
+export type Country = {
   name: {
     common: string
+  },
+  translations: {
+    por: {
+      common: string
+    }
+  },
+  flags: {
+    alt: string,
+    src: string,
+    svg: string
   }
+
+  capital: string
+  region: string
+  subregion: string
+  population: number
+  languages?: {
+    [key: string]: string
+  }
+  borders?: string[]
+  cca3: string
 }
 
 async function getCountries(): Promise<Country[]> {
@@ -15,12 +36,15 @@ export default async function Home() {
   const countries = await getCountries()
 
   return (
-    <section className="grid grid-cols-5 w-full container gap-2 mt-16">
+    <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 w-full container gap-2 mt-16">
 
       {countries.map((country) => (
-        <article key={country.name.common} className="h-64 min-w-full p-2 bg-white border-2 rounded-xl">
-          <h1>{country.name.common}</h1>
-        </article>
+        <CountryCard
+          name={country.name.common}
+          ptName={country.translations.por.common}
+          flag={country.flags.svg}
+          flagAlt={country.flags.alt}
+        />
       ))}
 
     </section>
